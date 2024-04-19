@@ -37,10 +37,12 @@ class RepoSyncer:
             self._sync_repo(repo)
 
     def sync_repos(self) -> None:
+        log.info('Pulling repos...')
         if self._config.config.has_section('repos'):
             self._sync_individual_repos()
         if self._config.config.has_section('repo_directories'):
             self._sync_repo_directories()
+        log.info('Done.')
 
     def _sync_repo_directories(self) -> None:
         for _, repo_dir_path in self._config.config['repo_directories'].items():
