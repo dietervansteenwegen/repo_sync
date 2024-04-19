@@ -29,14 +29,10 @@ Changelog = 'https://github.com/dietervansteenwegen/repo_sync/blob/master/CHANGE
 
 [project.scripts]
 
-repo_sync = '__main__:main'
-
-[project.gui-scripts]
-
+repo_sync = 'main:main'
 
 [project.optional-dependencies]
 
-# cli = ['rich', 'click']
 
 [build-system]
 requires = ['setuptools', 'setuptools-scm']

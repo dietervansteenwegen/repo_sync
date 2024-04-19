@@ -23,6 +23,7 @@ def main():
     repo_syncer.sync_repos()
 
 
+_setup_log()
+
 if __name__ == '__main__':
-    _setup_log()
     main()

@@ -6,6 +6,3 @@
 __author__ = 'Dieter Vansteenwegen'
 __project__ = 'RepoSync'
 __project_link__ = 'https://www.boxfish.be'
-
-
-print('log setup')
