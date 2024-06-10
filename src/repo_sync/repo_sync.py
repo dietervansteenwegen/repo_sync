@@ -10,6 +10,7 @@ import logging
 import pathlib
 
 from config.config import Config
+
 from repo_sync.local_repo import LocalRepo
 
 log = logging.getLogger(__name__)
@@ -25,6 +26,7 @@ class RepoSyncer:
         log.debug(f'Handling {repo}')
         if repo.is_valid and repo.has_remote:
             repo.pull_repo()
+            repo.push_repo()
         else:
             msg = (
                 f'{repo} does not exist, is no repository or has no remote. ' 'Ignoring this entry.'
@@ -37,7 +39,7 @@ class RepoSyncer:
             self._sync_repo(repo)
 
     def sync_repos(self) -> None:
-        log.info('Pulling repos...')
+        log.info('Syncing repos...')
         if self._config.config.has_section('repos'):
             self._sync_individual_repos()
         if self._config.config.has_section('repo_directories'):

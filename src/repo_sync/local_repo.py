@@ -47,5 +47,19 @@ class LocalRepo:
             self.errors.append(rtn.stderr)
         return success
 
+    def push_repo(self) -> bool:
+        log.debug(f'Pushing {self}')
+        success = False
+        rtn = subprocess.run(['git', '-C', self.path, 'push'], capture_output=True, text=True)  # noqa: S603, S607
+        if rtn.returncode == 0:
+            success = True
+            if rtn.stdout.strip(STRIP_FOR_LOGS) != '':
+                log.info(rtn.stdout.strip(STRIP_FOR_LOGS))
+        else:
+            msg = rtn.stderr.strip().replace('\n', '---')
+            log.error(f'Issue during push: {msg}')
+            self.errors.append(rtn.stderr)
+        return success
+
     def __str__(self) -> str:
         return f'Repository "{self.name}" at {self.path.__str__()}'
