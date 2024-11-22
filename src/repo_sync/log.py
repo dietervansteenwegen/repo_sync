@@ -13,8 +13,6 @@ import logging.handlers
 from pathlib import Path
 from typing import Union
 
-import pytz
-
 LOG_FMT = (
     '%(asctime)s|%(levelname)-8.8s|%(module)-15.15s|%(lineno)-0.4d|'
     '%(funcName)-20.20s|%(message)s|'
@@ -23,7 +21,7 @@ DATEFMT = '%d/%m/%Y %H:%M:%S'
 LOGFILE = './logs/logfile.log'
 LOG_FILE_MAX_BYTES = 1000000
 LOG_BACKUP_COUNT = 10
-TZ_UTC = pytz.timezone('utc')
+TZ_UTC = dt.timezone.utc
 CONSOLE_LOG_LEVEL = logging.INFO
 
 
@@ -66,6 +64,7 @@ def setup_logger() -> logging.Logger:
     logger = logging.getLogger()  # DON'T specifiy name in order to create root logger!
     logger.setLevel(logging.DEBUG)
     add_console_handler(logger)
+    add_rotating_file(logger)
     return logger
 
 

@@ -13,7 +13,6 @@ classifiers = [
     'Programming Language :: Python',
 ]
 requires-python = ">3.6"
-dynamic = ["dependencies"]
 # version can also be set in the dynamic field to get it from a __version__ file. Add
 # version = { attr = "package.__version__" }
 # to [tool.setuptools.dynamic]
@@ -29,7 +28,7 @@ Changelog = 'https://github.com/dietervansteenwegen/repo_sync/blob/master/CHANGE
 
 [project.scripts]
 
-repo_sync = 'main:main'
+repo_syncc = 'repo_sync.main:main'
 
 [project.optional-dependencies]
 
@@ -38,12 +37,10 @@ repo_sync = 'main:main'
 requires = ['setuptools', 'setuptools-scm']
 # build-backend = 'setuptools.build.meta'
 
-[tool.setuptools.dynamic]
-dependencies = { file = ["requirements.txt"] }
-
 [tool.setuptools.packages.find]
 where = ['src'] # list of folders that contain the packages (['.'] by default)
 include = [
+    'repo_sync',
     # 'package_dir',
 ] # package names should match these glob patterns (['*'] by default)
 # exclude = ['my_package.tests*'] # exclude packages matching these glob patterns (empty by default)

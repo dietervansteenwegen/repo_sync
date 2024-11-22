@@ -6,14 +6,11 @@ __author__ = 'Dieter Vansteenwegen'
 __project__ = 'RepoSync'
 __project_link__ = 'https://www.boxfish.be'
 
-from config.config import Config
-from log.log import add_rotating_file, setup_logger
-from repo_sync import RepoSyncer
+from repo_sync.config import Config
+from repo_sync.log import setup_logger
+from repo_sync.repo_syncer import RepoSyncer
 
-
-def _setup_log():
-    log = setup_logger()
-    add_rotating_file(log)
+setup_logger()
 
 
 def main():
@@ -22,8 +19,6 @@ def main():
     repo_syncer = RepoSyncer(conf)
     repo_syncer.sync_repos()
 
-
-_setup_log()
 
 if __name__ == '__main__':
     main()

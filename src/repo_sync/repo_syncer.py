@@ -9,8 +9,7 @@ __project_link__ = 'https://www.boxfish.be'
 import logging
 import pathlib
 
-from config.config import Config
-
+from repo_sync.config import Config
 from repo_sync.local_repo import LocalRepo
 
 log = logging.getLogger(__name__)
