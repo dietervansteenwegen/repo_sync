@@ -22,7 +22,7 @@ class RepoSyncer:
         self.issues: list[str] = []
 
     def _sync_repo(self, repo: LocalRepo):
-        log.debug(f'Handling {repo}')
+        log.info(f'Handling {repo}')
         if repo.is_valid and repo.has_remote:
             repo.pull_repo()
             repo.push_repo()
@@ -51,3 +51,5 @@ class RepoSyncer:
             if src_dir.is_dir():
                 for subdir in [subdir for subdir in src_dir.iterdir() if subdir.is_dir()]:
                     self._sync_repo(LocalRepo(name=subdir.stem, path=subdir))
+            else:
+                log.error(f'{src_dir} is not a valid directory.')

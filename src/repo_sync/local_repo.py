@@ -34,7 +34,7 @@ class LocalRepo:
         return rtn.stdout != ''
 
     def pull_repo(self) -> bool:
-        log.debug(f'Pulling {self}')
+        log.info(f'Pulling {self}')
         success = False
         rtn = subprocess.run(['git', '-C', self.path, 'pull'], capture_output=True, text=True)  # noqa: S603, S607
         if rtn.returncode == 0:
@@ -43,7 +43,7 @@ class LocalRepo:
                 log.info(rtn.stdout.strip(STRIP_FOR_LOGS))
         else:
             msg = rtn.stderr.strip().replace('\n', '---')
-            log.error(f'Issue during pull: {msg}')
+            log.warning(f'Issue during pull: {msg}')
             self.errors.append(rtn.stderr)
         return success
 

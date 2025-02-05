@@ -1,5 +1,9 @@
 # repo_sync Changelog
 
+## Not yet released
+
+- feature: Improved logging (to home dir)
+
 ## v0.1.0
 
 - Initial release
