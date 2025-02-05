@@ -27,9 +27,7 @@ class RepoSyncer:
             repo.pull_repo()
             repo.push_repo()
         else:
-            msg = (
-                f'{repo} does not exist, is no repository or has no remote. ' 'Ignoring this entry.'
-            )
+            msg = f'{repo} does not exist, is no repository or has no remote. Ignoring this entry.'
             log.warning(msg)
 
     def _sync_individual_repos(self) -> None:

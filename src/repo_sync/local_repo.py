@@ -24,9 +24,7 @@ class LocalRepo:
 
     @property
     def is_valid(self) -> bool:
-        dir_exists = self.path.is_dir()
-        is_repo = dir_exists and pathlib.Path.joinpath(self.path, '.git').is_dir()
-        return dir_exists and is_repo
+        return self.path.is_dir() and pathlib.Path.joinpath(self.path, '.git').is_dir()
 
     @property
     def has_remote(self) -> bool:

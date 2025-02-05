@@ -38,8 +38,8 @@ def get_arguments() -> argparse.Namespace:
 
 class HelpfullArgumentParser(argparse.ArgumentParser):
     def error(self, msg):
-        print('-' * 80)
-        print(f'\nERROR: {msg}\n\n')
+        print('\n' + '-' * 80)
+        print(f'ERROR:\n\t{msg}')
         print('-' * 80)
         self.print_help()
 

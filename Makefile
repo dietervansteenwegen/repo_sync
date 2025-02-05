@@ -1,7 +1,7 @@
 ## Based on https://duarteocarmo.com/blog/opinionated-python-boilerplate
 
-.PHONY: install clean prep cleanup_git
 
+.PHONY: cleanup_git
 ## Create list of local branches in a temporary file.
 ## Afterwards remove all branches from file.
 cleanup_git:
@@ -15,24 +15,28 @@ cleanup_git:
 	@echo ">> Hit <CTRL> + C to cancel."
 	@vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
 
+.PHONY: install
 ## Install for production
 install:
-	@echo ">> Upgrading pip..."
-	python -m pip install --upgrade pip
-	@echo ">> Installing package as editable install..."
-	python -m pip install -e .
+	@echo "Creating virtual environment using uv"
+	@uv sync
+	@uv lock --locked
+	@echo "Setting up pre-commit"
+	@uv run pre-commit install
+	@uv run pre-commit autoupdate
+	@uv run pre-commit run --all-files
 	@echo ">> Done!"
 
+.PHONY: clean
 ## Delete all temporary files
 clean:
 	rm -rf build
 	rm -rf dist
 
+.PHONY: prep
 ## run pre-commit rules
 prep:
-	pre-commit run --all-files
-
-## Build using pip-tools
+	uv run pre-commit run --all-files
 
 
 

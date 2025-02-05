@@ -63,7 +63,7 @@ def setup_logger() -> logging.Logger:
     logger = logging.getLogger()  # DON'T specifiy name in order to create root logger!
     logger.setLevel(logging.DEBUG)
     add_console_handler(logger)
-    add_rotating_file(logger)
+    add_rotating_file_handler(logger)
     return logger
 
 
@@ -80,7 +80,7 @@ def add_console_handler(logger: logging.Logger) -> None:
     logger.addHandler(console_handler)
 
 
-def add_rotating_file(logger: logging.Logger) -> None:
+def add_rotating_file_handler(logger: logging.Logger) -> None:
     """Add rotating file handler to Logger instance.
 
     Logfile used: LOGFILE

@@ -4,6 +4,7 @@
 
 - feature: Improved logging (to home dir)
 - build: Add additional information for packaging
+- refactor: Some cleanup
 
 ## v0.1.0
 
