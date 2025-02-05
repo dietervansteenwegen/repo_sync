@@ -3,6 +3,7 @@
 ## Not yet released
 
 - feature: Improved logging (to home dir)
+- build: Add additional information for packaging
 
 ## v0.1.0
 

@@ -1,9 +1,9 @@
 # See https://peps.python.org/pep-0621/
 
 [project]
-keywords = ['repository', 'synchronisation']
+keywords = ['repository', 'synchronisation', 'version control']
 authors = [{ email = 'news1@vansteenwegen.org', name = 'Dieter Vansteenwegen' }]
-name = 'Repo_sync' # No_spaces_allowed
+name = 'Repo_sync'
 readme = 'README.md'
 version = '0.1.0'
 description = 'Automated synchronisation of multiple local GIT repositories. Reads location of repos on your local machine from a config file and pulls latest versions from the remote.'
@@ -11,15 +11,19 @@ license = { file = 'LICENSE' }
 classifiers = [
     'Development Status :: 4 - Beta',
     'Programming Language :: Python',
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: POSIX :: Linux",
 ]
-requires-python = ">3.6"
+
+requires-python = ">=3.7"
 # version can also be set in the dynamic field to get it from a __version__ file. Add
 # version = { attr = "package.__version__" }
 # to [tool.setuptools.dynamic]
 
-# dependencies = [
-
-# ]
+# dependencies = []
 
 [project.urls]
 Homepage = 'https://boxfish.be'
@@ -28,14 +32,14 @@ Changelog = 'https://github.com/dietervansteenwegen/repo_sync/blob/master/CHANGE
 
 [project.scripts]
 
-repo_syncc = 'repo_sync.main:main'
+repo_sync = 'repo_sync.main:main'
 
 [project.optional-dependencies]
 
 
 [build-system]
 requires = ['setuptools', 'setuptools-scm']
-# build-backend = 'setuptools.build.meta'
+build-backend = 'setuptools.build_meta'
 
 [tool.setuptools.packages.find]
 where = ['src'] # list of folders that contain the packages (['.'] by default)
@@ -51,6 +55,7 @@ exclude_dirs = ["tests"]
 # skips = ["B101", "B601"]
 
 [tool.ruff]
+target-version = "py38"
 exclude = [
     ".bzr",
     ".direnv",
