@@ -26,6 +26,7 @@ class RepoSyncer:
         if repo.is_valid and repo.has_remote:
             repo.pull_repo()
             repo.push_repo()
+            repo.push_tags()
         else:
             msg = f'{repo} does not exist, is no repository or has no remote. Ignoring this entry.'
             log.warning(msg)

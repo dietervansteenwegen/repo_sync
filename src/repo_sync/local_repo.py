@@ -34,7 +34,11 @@ class LocalRepo:
     def pull_repo(self) -> bool:
         log.info(f'Pulling {self}')
         success = False
-        rtn = subprocess.run(['git', '-C', self.path, 'pull'], capture_output=True, text=True)  # noqa: S603, S607
+        rtn = subprocess.run(  # noqa: S603,
+            ['git', '-C', self.path, 'pull', '--all'],  # noqa: S603, S607
+            capture_output=True,
+            text=True,
+        )
         if rtn.returncode == 0:
             success = True
             if rtn.stdout.strip(STRIP_FOR_LOGS) != 'Already up to date.':
@@ -48,7 +52,11 @@ class LocalRepo:
     def push_repo(self) -> bool:
         log.debug(f'Pushing {self}')
         success = False
-        rtn = subprocess.run(['git', '-C', self.path, 'push'], capture_output=True, text=True)  # noqa: S603, S607
+        rtn = subprocess.run(  # noqa: S603,
+            ['git', '-C', self.path, 'push', '--all'],  # noqa: S603, S607
+            capture_output=True,
+            text=True,
+        )
         if rtn.returncode == 0:
             success = True
             if rtn.stdout.strip(STRIP_FOR_LOGS) != '':
@@ -56,6 +64,24 @@ class LocalRepo:
         else:
             msg = rtn.stderr.strip().replace('\n', '---')
             log.error(f'Issue during push: {msg}')
+            self.errors.append(rtn.stderr)
+        return success
+
+    def push_tags(self) -> bool:
+        log.debug(f'Pushing tags for {self}')
+        success = False
+        rtn = subprocess.run(  # noqa: S603,
+            ['git', '-C', self.path, 'push', '--tags'],  # noqa: S607, S603
+            capture_output=True,
+            text=True,
+        )
+        if rtn.returncode == 0:
+            success = True
+            if rtn.stdout.strip(STRIP_FOR_LOGS) != '':
+                log.info(rtn.stdout.strip(STRIP_FOR_LOGS))
+        else:
+            msg = rtn.stderr.strip().replace('\n', '---')
+            log.error(f'Issue during tags push: {msg}')
             self.errors.append(rtn.stderr)
         return success
 

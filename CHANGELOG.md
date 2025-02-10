@@ -5,6 +5,7 @@
 - feature: Improved logging (to home dir)
 - build: Add additional information for packaging
 - refactor: Some cleanup
+- feature: Push/pull all branches and tags
 
 ## v0.1.0
 
